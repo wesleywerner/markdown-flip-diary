@@ -42,8 +42,35 @@
         var markdown_text = markdown.toHTML(plain_text);
         $('#about').html(markdown_text);
     });
+    
+    // test for local storage support
+    function supportsLocalStorage() {
+      try {
+        return 'localStorage' in window && window['localStorage'] !== null;
+      } catch (e) {
+        return false;
+      }
+    }
+    
+    // load a saved page number if there is one
+    function load_saved_page(maxPages) {
+        if (!supportsLocalStorage()) { return 1; }
+        var storedValue = parseInt(localStorage["page.number"]);
+        if (storedValue && storedValue > 0 && storedValue < maxPages) {
+            return storedValue;
+        } else { 
+            return 1;
+        }
+    }
+    
+    // save a page number
+    function save_page_number(pageNumber) {
+        if (!supportsLocalStorage()) { return false; }
+        localStorage["page.number"] = pageNumber;
+        return true;
+    }
 
-    var numberOfPages = 30;
+    var numberOfPages = 10;
 
     // Adds the pages that the book will need
     function addPage(page, book) {
@@ -51,7 +78,6 @@
         if (!book.turn('hasPage', page)) {
             // Create an element for this page
             var element = $('<div />', {'class': 'page '+((page%2==0) ? 'odd' : 'even'), 'id': 'page-'+page})
-            //.html('<i class="loader"></i>');
             // If not then add the page
             book.turn('addPage', element, page);
             
@@ -67,7 +93,9 @@
     }
 
     $(window).ready(function(){
+        var storedPage = load_saved_page(numberOfPages);
         $('#book').turn({acceleration: true,
+                            page: storedPage,
                             pages: numberOfPages,
                             elevation: 50,
                             gradients: !$.isTouch,
@@ -85,6 +113,7 @@
 
                                 turned: function(e, page) {
                                     $('#page-number').val(page);
+                                    save_page_number(page);
                                 }
                             }
                         });
