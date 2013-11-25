@@ -2,34 +2,48 @@
 <html>
 <head>
 
-<script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+<script type="text/javascript" src="scripts/jquery-1.10.2.min.js"></script>
 
-<script type="text/javascript" src="turn.min.js"></script>
+<script type="text/javascript" src="scripts/turn.min.js"></script>
+
+<script src="scripts/markdown.min.js"></script>
 
 <link href='style.css' rel='stylesheet' type='text/css'>
 
 </head>
 <body>
 
-<div id="controls">
-    <p>This is the the diary of You</p>
-    <p>Flip the pages with your arrow keys.</p>
-    <p><a href="README">More about this book.</a></p>
-    <label for="page-number">page </label> <input type="text" size="3" id="page-number"></span>
-</div>
-
 <div id="book">
-    <div class="cover">
-    <br/>
-    <h1>diary of</h1>
-    <h1>You</h1>
+    <div id="cover" class="cover">
     </div>
 </div>
 
+<div id="about">
+</div>
+
+<div id="info">
+    <p>Flip the pages with your arrow keys.</p>
+    <p><a href="README.md">More about this book.</a></p>
+    <label for="page-number">page </label> <input type="text" size="3" id="page-number"></span>
+</div>
 
 <script type="text/javascript">
 
-    var numberOfPages = 1000;
+    // load the cover and about pages
+    $('#cover').load('pages/cover.md', function() {
+        var plain_text = $('#cover').html();
+        var markdown_text = markdown.toHTML(plain_text);
+        $('#cover').html(markdown_text);
+    });
+
+    // load the cover and about pages
+    $('#about').load('pages/about.md', function() {
+        var plain_text = $('#about').html();
+        var markdown_text = markdown.toHTML(plain_text);
+        $('#about').html(markdown_text);
+    });
+
+    var numberOfPages = 30;
 
     // Adds the pages that the book will need
     function addPage(page, book) {
@@ -40,7 +54,15 @@
             //.html('<i class="loader"></i>');
             // If not then add the page
             book.turn('addPage', element, page);
-            element.load('getpage.php?page='+page);
+            
+            //element.load(page+'.md');
+            
+            element.load('pages/'+page+'.md', function() {
+                var plain_text = element.html();
+                var markdown_text = markdown.toHTML(plain_text);
+                element.html(markdown_text);
+            });
+            
         }
     }
 

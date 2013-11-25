@@ -1,63 +1,65 @@
-@import url(http://fonts.googleapis.com/css?family=Marck+Script);
+/*@import url(http://fonts.googleapis.com/css?family=Marck+Script);*/
 
-body{
+body {
     background: #000;
     font-family: 'Marck Script', cursive;
 }
 
-#book{
-    width:800px;
-    height:500px;
+#book {
+    width: 1000px;
+    height: 625px;
 }
 
-#book .turn-page{
+#book .turn-page {
     background: #000;
 }
 
-#book .cover{
-    background-image: url('cover.jpg');
+#book .cover {
+    background: #fff;
+    background-image: url("book/cover.jpg");
+    padding-left: 25px;
+    color: #300;
+    text-align: center;
+    font-size: 25px;
 }
 
-#book .cover h1{
-    color:#000;
-    text-align:center;
-    font-size:30px;
+#book .page h1, #book .page p {
+    padding-left: 20px;
+    padding-right: 20px;
+    font-size: 20px;
+    color: #555;
 }
 
-#book .data{
-    padding: 20px;
-    font-size:18px;
-    color:#222;
-}
-
-#book .data h1{
-    font-size:30px;
-}
-
-#controls{
-    float: right;
-    top: 40px;
-    text-align:center;
+#about, #info {
+    text-align: center;
     color: #666;
 }
 
-#controls a{
+#about a, #info a {
     color: #666;
 }
 
-#controls input, #controls label{
+#about input, #about label {
 
 }
 
-#book .odd{
-    background-image: url('left-page.jpg');
+#book .odd {
+    background: #fff;
+    background-image: url("book/left-page.jpg");
 }
 
-#book .even{
-    background-image: url('right-page.jpg');
+#book .even {
+    background: #fff;
+    background-image: url("book/right-page.jpg");
 }
 
-#page-number{
+#page-number {
     background: #000;
     color: #666;
+}
+
+hr {
+    background: url("book/hr.gif") no-repeat top center;
+    height: 16px;
+    border: none !important;
 }

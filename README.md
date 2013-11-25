@@ -1,24 +1,57 @@
 markdown-flip-diary
 ===================
 
-A markdown rendered flip diary.
-
-This project is a merger of a couple of other libraries, glued together with the included getpage.php script, provides a digital book that you can flip through.
+A digital diary or booklet composed of other libraries. You can turn the pages.
 
 Pages are written in plain text files named after the page numbers, i.e. `2.md` for page two, and so forth. You can format the pages using the brilliant Markdown format, more on that at daringfireball.net/projects/markdown
 
-# setup steps
+This all works client side, allowing you to edit and view the diary on your local machine, before uploading to your host.
 
-_You need a host that supports php._
+# Installation
 
-1. grab the getpage.php file into your new diary directory.
+1. Grab the source from https://github.com/wesleywerner/markdown-flip-diary
 
-2. get the markdown renderer file `markdown.php` from http://michelf.ca/projects/php-markdown/
+2. Download these requirements each from their respective site, and place them under the `scripts/` directory:
 
-3. get the book flip `turn.min.js` file from http://www.turnjs.com
+* `turn.min.js`: http://www.turnjs.com
+    * Turn.js is a library that will make your content look like a real book or magazine with just HTML content.
+    
+* `markdown.min.js`: https://github.com/evilstreak/markdown-js
+    * markdown-js is a JavaScript markdown parser.
 
-4. create a `pages` directory where you will be saving pages with the follwing names: `2.md` for page 2, `3.md` for page 3, and so forth.
+* `jquery-1.10.2.min.js`: http://jquery.com/
+    * jQuery is a fast, small, and feature-rich JavaScript library.  
+    * Note: As we use the most simplest of jQuery elements if you can only get a newer version it should be fine and dandy. Just edit index.html to match the version you got. We also use the compressed minimized version.
 
-5. create images `cover.jpg` and `left-page.jpg` and `right-page.jpg` for your pages, these are 400 x 500 in size but easily adjustible to suit your needs.
+* Load `index.html` in your browser, customize the styles and add some pages. And finally, upload to your host!
 
-6. Edit the `style.css` file to customize your look.
+# Questions and Answers
+
+## Q: How do I write new pages?  
+
+A: Save them in the pages/ directory, name them after the page number, with a `.md` extension (for markdown). Pages start with `2.md` as `cover.md` takes up the first page.
+
+## Q: Can I style with some nicer web fonts?
+
+A: Certainly. Have a look at http://www.google.com/fonts and `@import` within `style.css`. Enjoy!
+
+## Q: Can I link my diary with my Dropbox account?
+
+A: You sure can! Just place the diary files in a Public directory and link the the index.html file.
+
+# License
+
+> This program is free software: you can redistribute it and/or modify
+> it under the terms of the GNU General Public License as published by
+> the Free Software Foundation, either version 3 of the License, or
+> any later version.
+> 
+> This program is distributed in the hope that it will be useful,
+> but WITHOUT ANY WARRANTY; without even the implied warranty of
+> MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+> GNU General Public License for more details.
+> 
+> You should have received a copy of the GNU General Public License
+> along with this program. If not, see http://www.gnu.org/licenses/.
+
+Included images were created by me in The GIMP with the help of this tutorial: http://www.gimptalk.com/index.php?/topic/41-creating-real-old-rusted-paper-with-gimp-gimp-223/
