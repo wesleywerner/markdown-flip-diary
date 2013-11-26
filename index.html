@@ -29,6 +29,9 @@
 
 <script type="text/javascript">
 
+    // adjust per character so the book remembers the last viewed page for each if hosted on the same domain.
+    var characterID = "";
+
     // load the cover and about pages
     $('#cover').load('pages/cover.md', function() {
         var plain_text = $('#cover').html();
@@ -55,7 +58,7 @@
     // load a saved page number if there is one
     function load_saved_page(maxPages) {
         if (!supportsLocalStorage()) { return 1; }
-        var storedValue = parseInt(localStorage["page.number"]);
+        var storedValue = parseInt(localStorage[characterID+".page.number"]);
         if (storedValue && storedValue > 0 && storedValue < maxPages) {
             return storedValue;
         } else { 
@@ -66,7 +69,7 @@
     // save a page number
     function save_page_number(pageNumber) {
         if (!supportsLocalStorage()) { return false; }
-        localStorage["page.number"] = pageNumber;
+        localStorage[characterID+".page.number"] = pageNumber;
         return true;
     }
 
