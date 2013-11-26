@@ -11,7 +11,7 @@ This all works client side, allowing you to edit and view the diary on your loca
 
 1. Grab the source from https://github.com/wesleywerner/markdown-flip-diary
 
-2. Download these requirements each from their respective site, and place them under the `scripts/` directory:
+2. Download these requirements each from their respective site, and place them under the `scripts/` directory - Note the use of the compressed (min) versions:
 
 * `turn.min.js`: http://www.turnjs.com
     * Turn.js is a library that will make your content look like a real book or magazine with just HTML content.
@@ -21,7 +21,7 @@ This all works client side, allowing you to edit and view the diary on your loca
 
 * `jquery-1.10.2.min.js`: http://jquery.com/
     * jQuery is a fast, small, and feature-rich JavaScript library.  
-    * Note: As we use the most simplest of jQuery elements if you can only get a newer version it should be fine and dandy. Just edit index.html to match the version you got. We also use the compressed minimized version.
+    * Note: As we use the most simplest of jQuery elements if you can only get a newer version it should be fine and dandy. Just edit index.html to match the version you got.
 
 * Load `index.html` in your browser, customize the styles and add some pages. And finally, upload to your host!
 
@@ -54,4 +54,13 @@ A: You sure can! Just place the diary files in a Public directory and link the t
 > You should have received a copy of the GNU General Public License
 > along with this program. If not, see http://www.gnu.org/licenses/.
 
-Included images were created by me in The GIMP with the help of this tutorial: http://www.gimptalk.com/index.php?/topic/41-creating-real-old-rusted-paper-with-gimp-gimp-223/
+# Attributions
+
+Many thanks to all the projects I used to glue this together! In no particular order:
+
+* [Turn.js](http://www.turnjs.com)
+* [markdown-js](https://github.com/evilstreak/markdown-js)
+* [jQuery](http://jquery.com)
+* [GIMP](http://www.gimp.org/)
+
+Book images created by me in GIMP with the help of [this tutorial](http://www.gimptalk.com/index.php?/topic/41-creating-real-old-rusted-paper-with-gimp-gimp-223/).
