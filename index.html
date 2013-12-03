@@ -87,7 +87,7 @@
             //element.load(page+'.md');
             
             element.load('pages/'+page+'.md', function() {
-                var plain_text = element.html();
+                var plain_text = element.text();
                 var markdown_text = markdown.toHTML(plain_text);
                 element.html(markdown_text);
             });
