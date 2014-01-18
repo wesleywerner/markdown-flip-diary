@@ -1,0 +1,106 @@
+/*@import url(http://fonts.googleapis.com/css?family=Marck+Script);*/
+
+body {
+    background: #000;
+    font-family: 'Marck Script', cursive;
+}
+
+#book {
+    width: 1000px;
+    height: 625px;
+    margin: auto;   /* center the book */
+}
+
+/* book cover positioning */
+#book .cover {
+    background: #fff;
+    background-image: url("book/cover.jpg");
+    margin-left: 250px;     /* center the cover in the book space   */
+    float: left;
+    width: 500px;
+    height: 625px;
+    background: #fff;
+    background-image: url("book/cover.jpg");
+    padding-left: 25px;
+    color: #300;
+    text-align: center;
+    font-size: 25px;
+}
+
+/* book cover text style */
+#book .cover {
+    padding-left: 25px;
+    color: #300;
+    text-align: center;
+    font-size: 25px;
+}
+
+/* book cover strong text */
+#book .cover strong {
+    color: #000;
+}
+
+/* pad heading texts */
+#book, h1, h2, h3, h4 {
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+/* pad paragraph text */
+#book .page p {
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+/* text color and size */
+#book .page p {
+    font-size: 20px;
+    color: #555;
+}
+
+#book .page code {
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+/* about and info texts */
+#about, #info {
+    text-align: center;
+    color: #666;
+}
+
+/* about and info links */
+#about a, #info a {
+    color: #666;
+}
+
+#about input, #about label {
+
+}
+
+#book .odd {
+    float: right;
+    width: 500px;
+    height: 625px;
+    background: #fff;
+    background-image: url("book/right-page.jpg");
+}
+
+#book .even {
+    float: left;
+    width: 500px;
+    height: 625px;
+    background: #fff;
+    background-image: url("book/left-page.jpg");
+}
+
+#page-number {
+    background: #000;
+    color: #666;
+}
+
+hr {
+    background: url("book/hr.gif") no-repeat top center;
+    height: 16px;
+    border: none !important;
+}

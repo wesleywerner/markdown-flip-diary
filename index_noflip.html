@@ -1,0 +1,195 @@
+<!doctype html>
+<html>
+<head>
+
+<script type="text/javascript" src="scripts/jquery-1.10.2.min.js"></script>
+<script src="scripts/markdown.min.js"></script>
+<link href='style_noflip.css' rel='stylesheet' type='text/css'>
+
+</head>
+<body>
+
+<div id="leftbuffer" style="display: none;">
+</div>
+<div id="rightbuffer" style="display: none;">
+</div>
+
+<div id="book">
+    <span id="coverpage" class="cover page"></span>
+    <span id="leftpage" class="even page"></span>
+    <span id="rightpage" class="odd page"></span>
+</div>
+
+<div id="about">
+</div>
+
+<div id="info">
+    <p>Flip the pages with your arrow keys.</p>
+    <p><a href="https://github.com/wesleywerner/markdown-flip-diary">More about this book.</a></p>
+    <label for="page-number">page </label> <input type="text" size="3" id="page-number"></span>
+</div>
+
+<script type="text/javascript">
+
+    // adjust per character so the book remembers the last viewed page for each if hosted on the same domain.
+    var characterID = "";
+
+    // load the cover and about pages
+    $('#about').load('pages/about.md', function() {
+        var plain_text = $('#about').html();
+        var markdown_text = markdown.toHTML(plain_text);
+        $('#about').html(markdown_text);
+    });
+    
+    // test for local storage support
+    function supportsLocalStorage() {
+      try {
+        return 'localStorage' in window && window['localStorage'] !== null;
+      } catch (e) {
+        return false;
+      }
+    }
+    
+    // load a saved page number if there is one
+    function load_saved_page(maxPages) {
+        if (!supportsLocalStorage()) { return 1; }
+        var storedValue = parseInt(localStorage[characterID+".page.number"]);
+        if (storedValue && storedValue > 0 && storedValue < maxPages) {
+            return storedValue;
+        } else { 
+            return 0;
+        }
+    }
+    
+    // save a page number
+    function save_page_number(pageNumber) {
+        if (!supportsLocalStorage()) { return false; }
+        localStorage[characterID+".page.number"] = pageNumber;
+        return true;
+    }
+
+    var numberOfPages = 10;
+    
+    function loadPages(pageindex) {
+        // pageindex equates to the number pages turned.
+        // each view shows 2 pages, the left-hand page shows the even
+        // and the right-hand shows the odd.
+        // a pageindex of 5 would show page number 10 on the left and
+        // page 11 on the right, that is:
+        //  left = (pageindex * 2)
+        //  right = left + 1
+        // 0 would be the cover.
+        
+        // clear the pages
+        $('#leftbuffer').html('');
+        $('#rightbuffer').html('');
+        $('#leftpage').html('');
+        $('#rightpage').html('');
+        
+        var left_page = null;
+        var right_page = null;
+        var cover_page = null;
+
+        if (pageindex == 0) {
+            // load cover.md into left
+            // clear right
+            cover_page = 'pages/cover.md';
+            $('#leftpage').css('display', 'none');
+            $('#rightpage').css('display', 'none');
+            $('#coverpage').css('display', '');
+        } else {
+            left_page = 'pages/' + pageindex * 2 + '.md';
+            right_page = 'pages/' + ((pageindex * 2) + 1) + '.md';
+            $('#leftpage').css('display', '');
+            $('#rightpage').css('display', '');
+            $('#coverpage').css('display', 'none');
+            };
+        
+        if (left_page) {
+            var left_buffer = $('#leftbuffer');
+            left_buffer.load(left_page, function() {
+                var plain_text = left_buffer.text();
+                var markdown_text = markdown.toHTML(plain_text);
+                $('#leftpage').html(markdown_text);
+                });
+                };
+
+        if (right_page) {
+            var right_buffer = $('#rightbuffer');
+            right_buffer.load(right_page, function() {
+                var plain_text = right_buffer.text();
+                var markdown_text = markdown.toHTML(plain_text);
+                $('#rightpage').html(markdown_text);
+                });
+                };
+        
+        if (cover_page) {
+            var right_buffer = $('#rightbuffer');
+            right_buffer.load(cover_page, function() {
+                var plain_text = right_buffer.text();
+                var markdown_text = markdown.toHTML(plain_text);
+                $('#coverpage').html(markdown_text);
+                });
+                };
+        
+    }
+
+
+    $(window).ready(function(){
+        
+        // load the saved page index.
+        var storedPage = load_saved_page(numberOfPages);
+        loadPages(storedPage);
+        
+        // hook into the page number input keydown
+        // to jump to the entered page on Return.
+        $('#page-number').keydown(function(e){
+            if (e.keyCode==13)
+                var pageIndex = $('#page-number').val() / 2;
+                if (pageIndex) {
+                    loadPages(pageIndex);
+                };
+            });
+    });
+
+    $(window).bind('keydown', function(e){
+        
+        // page with the arrow keys, but only if the active element
+        // is not an input control.
+        if (e.target && e.target.tagName.toLowerCase()!='input')
+            
+            // left key
+            if (e.keyCode==37) {
+                
+                // load saved index and reduce
+                var storedPage = load_saved_page(numberOfPages) - 1;
+                
+                // clamp negatives
+                if (storedPage < 0) { 
+                    storedPage = 0; 
+                    }
+                
+                // save new page index and load
+                save_page_number(storedPage);
+                $('#page-number').val(storedPage * 2);
+                loadPages(storedPage);
+            }
+            
+            // right key
+            else if (e.keyCode==39) {
+                
+                // load saved index and increase
+                var storedPage = load_saved_page(numberOfPages) + 1;
+                
+                // save new page index and load
+                save_page_number(storedPage);
+                $('#page-number').val(storedPage * 2);
+                loadPages(storedPage);
+            }
+    });
+
+</script>
+
+
+</body>
+</html>
