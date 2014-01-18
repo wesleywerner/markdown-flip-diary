@@ -20,6 +20,11 @@ Many thanks to the libraries I used to put this together. In no particular order
 * [jQuery](http://jquery.com)
 * [GIMP](http://www.gimp.org/)
 
+## Demo
+
+* [Animated page turn version](https://dl.dropboxusercontent.com/u/18686471/markdown-flip-diary-demo/index.html)
+* [No-Flip minimalist version](https://dl.dropboxusercontent.com/u/18686471/markdown-flip-diary-demo/index_noflip.html)
+
 Book images created by me in GIMP with the help of [this tutorial](http://www.gimptalk.com/index.php?/topic/41-creating-real-old-rusted-paper-with-gimp-gimp-223/).
 
 ## Q: How do I add pages to the diary?
