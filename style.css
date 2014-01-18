@@ -8,6 +8,7 @@ body {
 #book {
     width: 1000px;
     height: 625px;
+    margin: auto;   /* center the book */
 }
 
 #book .turn-page {
